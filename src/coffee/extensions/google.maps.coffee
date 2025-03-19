@@ -12,27 +12,28 @@ angular.module('uiGmapgoogle-maps.extensions')
     # monitored so that the value of _openedState can be set when the close button is
     # clicked (see code at bottom of this file).
     #
-    google.maps.InfoWindow::_open = google.maps.InfoWindow::open
-    google.maps.InfoWindow::_close = google.maps.InfoWindow::close
-    google.maps.InfoWindow::_isOpen = false
+    if !(google.maps.InfoWindow::hasOwnProperty('isOpen'))
+      google.maps.InfoWindow::_open = google.maps.InfoWindow::open
+      google.maps.InfoWindow::_close = google.maps.InfoWindow::close
+      google.maps.InfoWindow::_isOpen = false
 
-    google.maps.InfoWindow::open = (map, anchor, recurse) ->
-      return if recurse?
-      @_isOpen = true
-      @_open map, anchor, true
-      return
+      google.maps.InfoWindow::open = (map, anchor, recurse) ->
+        return if recurse?
+        @_isOpen = true
+        @_open map, anchor, true
+        return
 
-    google.maps.InfoWindow::close = (recurse) ->
-      return if recurse?
-      @_isOpen = false
-      @_close(true)
-      return
+      google.maps.InfoWindow::close = (recurse) ->
+        return if recurse?
+        @_isOpen = false
+        @_close(true)
+        return
 
-    google.maps.InfoWindow::isOpen = (val = undefined) ->
-      unless val?
-        return @_isOpen
-      else
-        @_isOpen = val
+      google.maps.InfoWindow::isOpen = (val = undefined) ->
+        unless val?
+          return @_isOpen
+        else
+          @_isOpen = val
 
     ###
     Do the same for InfoBox
