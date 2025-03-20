@@ -1,4 +1,4 @@
-/*! angular-google-maps 2.4.1 2017-01-05
+/*! angular-google-maps 2.4.2 2025-03-20
  *  AngularJS directives for Google Maps
  *  git: https://github.com/angular-ui/angular-google-maps.git
  */
@@ -184,33 +184,35 @@ Nicholas McCready - https://twitter.com/nmccready
         if (!(google || (typeof google !== "undefined" && google !== null ? google.maps : void 0) || (google.maps.InfoWindow != null))) {
           return;
         }
-        google.maps.InfoWindow.prototype._open = google.maps.InfoWindow.prototype.open;
-        google.maps.InfoWindow.prototype._close = google.maps.InfoWindow.prototype.close;
-        google.maps.InfoWindow.prototype._isOpen = false;
-        google.maps.InfoWindow.prototype.open = function(map, anchor, recurse) {
-          if (recurse != null) {
-            return;
-          }
-          this._isOpen = true;
-          this._open(map, anchor, true);
-        };
-        google.maps.InfoWindow.prototype.close = function(recurse) {
-          if (recurse != null) {
-            return;
-          }
-          this._isOpen = false;
-          this._close(true);
-        };
-        google.maps.InfoWindow.prototype.isOpen = function(val) {
-          if (val == null) {
-            val = void 0;
-          }
-          if (val == null) {
-            return this._isOpen;
-          } else {
-            return this._isOpen = val;
-          }
-        };
+        if (!(google.maps.InfoWindow.prototype.hasOwnProperty('isOpen'))) {
+          google.maps.InfoWindow.prototype._open = google.maps.InfoWindow.prototype.open;
+          google.maps.InfoWindow.prototype._close = google.maps.InfoWindow.prototype.close;
+          google.maps.InfoWindow.prototype._isOpen = false;
+          google.maps.InfoWindow.prototype.open = function(map, anchor, recurse) {
+            if (recurse != null) {
+              return;
+            }
+            this._isOpen = true;
+            this._open(map, anchor, true);
+          };
+          google.maps.InfoWindow.prototype.close = function(recurse) {
+            if (recurse != null) {
+              return;
+            }
+            this._isOpen = false;
+            this._close(true);
+          };
+          google.maps.InfoWindow.prototype.isOpen = function(val) {
+            if (val == null) {
+              val = void 0;
+            }
+            if (val == null) {
+              return this._isOpen;
+            } else {
+              return this._isOpen = val;
+            }
+          };
+        }
 
         /*
         Do the same for InfoBox
@@ -11464,7 +11466,7 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* istanbul ignore next */
 	angular.module('uiGmapgoogle-maps.wrapped')
@@ -11476,9 +11478,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	});
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  module.exports = {
@@ -11494,9 +11496,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	Graph implemented as a modified incidence list. O(1) for every typical
@@ -11788,9 +11790,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	Minimum heap, i.e. smallest node at root.
@@ -11935,9 +11937,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	Doubly Linked.
@@ -12212,9 +12214,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	Kind of a stopgap measure for the upcoming [JavaScript
@@ -12403,9 +12405,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	Amortized O(1) dequeue!
@@ -12495,9 +12497,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	Credit to Wikipedia's article on [Red-black
@@ -12958,9 +12960,9 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	Good for fast insertion/removal/lookup of strings.
@@ -13211,7 +13213,7 @@ window['RichMarkerPosition'] = RichMarkerPosition;
 	}).call(this);
 
 
-/***/ }
+/***/ })
 /******/ ]);;angular.module('uiGmapgoogle-maps.wrapped')
 .service('uiGmapMarkerSpiderfier', [ 'uiGmapGoogleMapApi', function(GoogleMapApi) {
   var self = this;

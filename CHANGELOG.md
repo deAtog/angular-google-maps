@@ -1,3 +1,10 @@
+<a name"2.4.2"></a>
+### 2.4.2 (2025-03-20)
+
+#### Bug Fixes
+
+* **InfoWindow:** Only add an isOpen method to google.maps.InfoWindow if a property of the same name does not already exist. Note: InfoWindow.isOpen() is now InfoWindow.isOpen due to the addition of the property by the Google Maps api.
+
 <a name"2.4.1"></a>
 ### 2.4.1 (2017-01-05)
  * **angular 1.6:** internal changes to support angular 1.6
