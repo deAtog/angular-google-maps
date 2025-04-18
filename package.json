@@ -1,6 +1,6 @@
 {
   "name": "@deatog/angular-google-maps",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "AngularJS directives for Google Maps",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "directives",
     "webcomponent"
   ],
-  "main": "dist/angular-google-maps.js",
+  "main": "dist/@deatog/angular-google-maps.js",
   "files": [
     "dist/*",
     "spec/coffee/helpers/google-api-mock.coffee",
