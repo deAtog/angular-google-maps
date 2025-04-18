@@ -1,4 +1,4 @@
-/*! @deatog/angular-google-maps 2.4.3 2025-04-18
+/*! @deatog/angular-google-maps 2.4.4 2025-04-18
  *  AngularJS directives for Google Maps
  *  git: https://github.com/deAtog/angular-google-maps.git
  */
