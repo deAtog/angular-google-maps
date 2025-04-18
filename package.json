@@ -1,6 +1,6 @@
 {
   "name": "@deatog/angular-google-maps",
-  "version": "2.4.4",
+  "version": "2.4.5-beta.1",
   "description": "AngularJS directives for Google Maps",
   "repository": {
     "type": "git",
