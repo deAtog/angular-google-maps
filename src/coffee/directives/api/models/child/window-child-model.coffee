@@ -21,7 +21,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
           @clonedModel = _.clone @model, true if @isScopeModel
 
           @getGmarker = ->
-            @markerScope?.getGMarker() if @markerScope?['getGMarker']?
+            if @markerScope?['getGMarker']? then @markerScope?.getGMarker() else @scope?.marker
 
           @listeners = []
           @createGWin()

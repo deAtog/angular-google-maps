@@ -13,6 +13,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
         options: '=options'
         control: '=control'
         show: '=show'
+        marker: '=marker'
       IWindow.scopeKeys = _.keys(IWindow.scope)
 
       @include ChildEvents

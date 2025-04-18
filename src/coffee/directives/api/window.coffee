@@ -34,7 +34,7 @@ angular.module('uiGmapgoogle-maps.directives.api')
       init: (scope, element, isIconVisibleOnClick, gMap, markerScope) ->
         defaults = if scope.options? then scope.options else {}
         hasScopeCoords = scope? and @validateCoords(scope.coords)
-        gMarker = markerScope.getGMarker() if markerScope?['getGMarker']?
+        gMarker = if markerScope?['getGMarker']? then markerScope.getGMarker() else scope?.marker
         opts = if hasScopeCoords then @createWindowOptions(gMarker, scope, element.html(), defaults) else defaults
         if gMap? #at the very least we need a Map, the marker is optional as we can create Windows without markers
           childWindow = new WindowChildModel {
