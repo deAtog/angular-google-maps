@@ -49,6 +49,11 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
           @scope.$watch 'show', @doShow, true
           @doShow()
 
+        isOpen: =>
+          if typeof @gObject.isOpen is 'function'
+            return @gObject.isOpen()
+
+          @gObject.isOpen
 
         watchElement: =>
           #note this is not efficient and is mainly dependent on model changing anywhere
@@ -59,7 +64,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
             return unless @element or @html
             if @html isnt @element.html() and @gObject
               @opts?.content = undefined
-              wasOpen = @gObject.isOpen()
+              wasOpen = @isOpen()
               @remove()
               @createGWin(wasOpen)
 
@@ -104,7 +109,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
                   @scope.$evalAsync()
             @gObject.setContent @opts.content
             @handleClick(@scope?.options?.forceClick or isOpen)
-            @doShow(@gObject.isOpen())
+            @doShow(@isOpen())
 
         watchCoords: =>
           scope = if @markerScope? then @markerScope else @scope
@@ -157,13 +162,13 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
           templateScope = null
 
           show = =>
-            unless @gObject.isOpen()
+            unless @isOpen()
               maybeMarker = @getGmarker()
               pos = @gObject.getPosition() if @gObject? and @gObject.getPosition?
               pos = maybeMarker.getPosition() if maybeMarker
               return unless pos
               @gObject.open @gMap, maybeMarker
-              isOpen = @gObject.isOpen()
+              isOpen = @isOpen()
               @model.show = isOpen if @model.show != isOpen
 
           if @scope.templateUrl
@@ -188,7 +193,7 @@ angular.module('uiGmapgoogle-maps.directives.api.models.child')
           @scope.$on 'destroy', -> templateScope.$destroy()
 
         hideWindow: =>
-          @gObject.close() if @gObject? and @gObject.isOpen()
+          @gObject.close() if @gObject? and @isOpen()
 
         getLatestPosition: (overridePos) =>
           maybeMarker = @getGmarker()
