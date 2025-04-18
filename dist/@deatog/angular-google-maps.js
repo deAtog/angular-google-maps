@@ -1,4 +1,4 @@
-/*! @deatog/angular-google-maps 2.4.4 2025-04-18
+/*! @deatog/angular-google-maps 2.4.5-beta.1 2025-04-18
  *  AngularJS directives for Google Maps
  *  git: https://github.com/deAtog/angular-google-maps.git
  */
@@ -3838,9 +3838,11 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
             this.clonedModel = _.clone(this.model, true);
           }
           this.getGmarker = function() {
-            var ref4, ref5;
+            var ref4, ref5, ref6;
             if (((ref4 = this.markerScope) != null ? ref4['getGMarker'] : void 0) != null) {
               return (ref5 = this.markerScope) != null ? ref5.getGMarker() : void 0;
+            } else {
+              return (ref6 = this.scope) != null ? ref6.marker : void 0;
             }
           };
           this.listeners = [];
@@ -6672,7 +6674,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           closeClick: '&closeclick',
           options: '=options',
           control: '=control',
-          show: '=show'
+          show: '=show',
+          marker: '=marker'
         };
 
         IWindow.scopeKeys = _.keys(IWindow.scope);
@@ -7478,9 +7481,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           var childWindow, defaults, gMarker, hasScopeCoords, opts;
           defaults = scope.options != null ? scope.options : {};
           hasScopeCoords = (scope != null) && this.validateCoords(scope.coords);
-          if ((markerScope != null ? markerScope['getGMarker'] : void 0) != null) {
-            gMarker = markerScope.getGMarker();
-          }
+          gMarker = (markerScope != null ? markerScope['getGMarker'] : void 0) != null ? markerScope.getGMarker() : scope != null ? scope.marker : void 0;
           opts = hasScopeCoords ? this.createWindowOptions(gMarker, scope, element.html(), defaults) : defaults;
           if (gMap != null) {
             childWindow = new WindowChildModel({
