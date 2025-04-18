@@ -1,6 +1,6 @@
-/*! angular-google-maps 2.4.2 2025-03-20
+/*! @deatog/angular-google-maps 2.4.3 2025-04-18
  *  AngularJS directives for Google Maps
- *  git: https://github.com/angular-ui/angular-google-maps.git
+ *  git: https://github.com/deAtog/angular-google-maps.git
  */
 ;
 (function( window, angular, _, undefined ){
@@ -3829,6 +3829,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           this.watchCoords = bind(this.watchCoords, this);
           this.createGWin = bind(this.createGWin, this);
           this.watchElement = bind(this.watchElement, this);
+          this.isOpen = bind(this.isOpen, this);
           this.watchAndDoShow = bind(this.watchAndDoShow, this);
           this.doShow = bind(this.doShow, this);
           var maybeMarker, ref, ref1, ref2, ref3;
@@ -3876,6 +3877,13 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           return this.doShow();
         };
 
+        WindowChildModel.prototype.isOpen = function() {
+          if (typeof this.gObject.isOpen === 'function') {
+            return this.gObject.isOpen();
+          }
+          return this.gObject.isOpen;
+        };
+
         WindowChildModel.prototype.watchElement = function() {
           return this.scope.$watch((function(_this) {
             return function() {
@@ -3887,7 +3895,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
                 if ((ref = _this.opts) != null) {
                   ref.content = void 0;
                 }
-                wasOpen = _this.gObject.isOpen();
+                wasOpen = _this.isOpen();
                 _this.remove();
                 return _this.createGWin(wasOpen);
               }
@@ -3946,7 +3954,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
             }
             this.gObject.setContent(this.opts.content);
             this.handleClick(((ref = this.scope) != null ? (ref1 = ref.options) != null ? ref1.forceClick : void 0 : void 0) || isOpen);
-            return this.doShow(this.gObject.isOpen());
+            return this.doShow(this.isOpen());
           }
         };
 
@@ -4032,7 +4040,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           show = (function(_this) {
             return function() {
               var isOpen, maybeMarker, pos;
-              if (!_this.gObject.isOpen()) {
+              if (!_this.isOpen()) {
                 maybeMarker = _this.getGmarker();
                 if ((_this.gObject != null) && (_this.gObject.getPosition != null)) {
                   pos = _this.gObject.getPosition();
@@ -4044,7 +4052,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
                   return;
                 }
                 _this.gObject.open(_this.gMap, maybeMarker);
-                isOpen = _this.gObject.isOpen();
+                isOpen = _this.isOpen();
                 if (_this.model.show !== isOpen) {
                   return _this.model.show = isOpen;
                 }
@@ -4083,7 +4091,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
         };
 
         WindowChildModel.prototype.hideWindow = function() {
-          if ((this.gObject != null) && this.gObject.isOpen()) {
+          if ((this.gObject != null) && this.isOpen()) {
             return this.gObject.close();
           }
         };
@@ -14176,3 +14184,4 @@ angular.module('uiGmapgoogle-maps.extensions')
   };
 }]);
 }( window, angular, _));
+//# sourceMappingURL=angular-google-maps_dev_mapped.js.map

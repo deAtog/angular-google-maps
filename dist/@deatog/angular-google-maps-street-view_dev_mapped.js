@@ -1,6 +1,6 @@
-/*! angular-google-maps 2.4.2 2025-03-20
+/*! @deatog/angular-google-maps 2.4.3 2025-04-18
  *  AngularJS directives for Google Maps
- *  git: https://github.com/angular-ui/angular-google-maps.git
+ *  git: https://github.com/deAtog/angular-google-maps.git
  */
 ;
 (function( window, angular, _, undefined ){
@@ -675,3 +675,4 @@ StreetViewPanorama Directive to care of basic initialization of StreetViewPanora
 
 }).call(this);
 }( window, angular, _));
+//# sourceMappingURL=angular-google-maps-street-view_dev_mapped.js.map
