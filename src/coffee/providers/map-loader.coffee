@@ -33,7 +33,10 @@ angular.module('uiGmapgoogle-maps.providers')
         script.id = scriptId = "ui_gmap_map_load_#{uuid.generate()}"
         script.type = 'text/javascript'
         script.src = getScriptUrl(options) + query
-        script.async = true
+
+        if options.loading == 'async'
+          script.async = true
+
         document.head.appendChild script
 
       isGoogleMapsLoaded = ->
