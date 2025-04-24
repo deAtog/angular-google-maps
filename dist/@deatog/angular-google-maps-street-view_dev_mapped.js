@@ -1,4 +1,4 @@
-/*! @deatog/angular-google-maps 2.4.5-beta.2 2025-04-24
+/*! @deatog/angular-google-maps 2.4.5-beta.3 2025-04-24
  *  AngularJS directives for Google Maps
  *  git: https://github.com/deAtog/angular-google-maps.git
  */
@@ -109,7 +109,9 @@ return UUID;
         script.id = scriptId = "ui_gmap_map_load_" + (uuid.generate());
         script.type = 'text/javascript';
         script.src = getScriptUrl(options) + query;
-        script.async = true;
+        if (options.loading === 'async') {
+          script.async = true;
+        }
         return document.head.appendChild(script);
       };
       isGoogleMapsLoaded = function() {
@@ -162,7 +164,8 @@ return UUID;
       v: '3',
       libraries: '',
       language: 'en',
-      preventLoad: false
+      preventLoad: false,
+      loading: 'async'
     };
     this.configure = function(options) {
       angular.extend(this.options, options);
