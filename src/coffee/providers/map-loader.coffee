@@ -98,6 +98,7 @@ angular.module('uiGmapgoogle-maps.providers')
     libraries: ''
     language: 'en'
     preventLoad: false
+    loading:'async'
 
   # A function that lets us configure options of the service
   @configure = (options) ->
